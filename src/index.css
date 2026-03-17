@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 100% / 0.08;
+    --input: 240 3.7% 15.9%;
+    --ring: 217.2 91.2% 59.8%;
+    --radius: 0.125rem;
+
+    --glow-primary: 217.2 91.2% 59.8%;
+    --glow-cyan: 190 95% 55%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-mono uppercase tracking-[0.2em] text-primary;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold tracking-tighter mt-2;
+  }
+
+  .body-text {
+    @apply text-base leading-relaxed text-foreground/70 max-w-[65ch];
+  }
+
+  .mono-tag {
+    @apply px-3 py-1.5 bg-primary/5 border border-primary/20 font-mono text-[11px] uppercase tracking-wider text-primary/80 transition-all duration-300 hover:bg-primary/10 hover:border-primary/40 hover:text-primary;
+  }
+
+  .card-surface {
+    @apply relative border border-foreground/10 bg-card/80 backdrop-blur-sm p-6 md:p-8 transition-all duration-500 hover:border-primary/40;
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0);
+  }
+
+  .card-surface:hover {
+    box-shadow: 0 0 30px -10px hsl(var(--primary) / 0.15), inset 0 1px 0 0 hsl(var(--primary) / 0.1);
+  }
+
+  .nav-link {
+    @apply text-[11px] font-mono uppercase tracking-widest text-foreground/40 hover:text-primary transition-colors duration-300 relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .metric-value {
+    @apply font-mono tabular-nums;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 40px hsl(var(--primary) / 0.3), 0 0 80px hsl(var(--primary) / 0.1);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.3), inset 0 0 20px -5px hsl(var(--primary) / 0.05);
+  }
+
+  .grid-bg {
+    background-image: 
+      linear-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .gradient-radial {
+    background: radial-gradient(ellipse 600px 400px at 50% 0%, hsl(var(--primary) / 0.08), transparent);
+  }
+
+  .floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .section-divider {
+    @apply w-full h-px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(20px, 10px) scale(1.02); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
